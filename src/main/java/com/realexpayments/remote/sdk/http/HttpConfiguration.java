@@ -1,5 +1,7 @@
 package com.realexpayments.remote.sdk.http;
 
+import org.apache.http.HttpHost;
+
 /**
  * Object containing all configurable HTTP settings.
  */
@@ -24,6 +26,9 @@ public class HttpConfiguration {
 	/** Whether only HTTPS is allowed for the endpoint. */
 	private boolean onlyAllowHttps = true;
 
+	/** Proxy server */
+	private HttpHost proxy;
+
 	/* Constructors/Getters/Setters */
 
 	/**
@@ -34,6 +39,16 @@ public class HttpConfiguration {
 		// Set defaults
 		this.endpoint = DEFAULT_ENDPOINT;
 		this.timeout = DEFAULT_TIMEOUT;
+	}
+
+	/**
+	 * Create a HttpConfiguration object with all defaults in place and the input proxy server.
+	 *
+	 * @param proxy Proxy server.
+	 */
+	public HttpConfiguration(HttpHost proxy) {
+		this();
+		this.proxy = proxy;
 	}
 
 	/**
@@ -89,4 +104,21 @@ public class HttpConfiguration {
 		this.onlyAllowHttps = onlyAllowHttps;
 	}
 
+	/**
+	 * Get the proxy server for the request.
+	 *
+	 * @return the proxy server
+	 */
+	public HttpHost getProxy() {
+		return proxy;
+	}
+
+	/**
+	 * Set the proxy server for the request.
+	 *
+	 * @param proxy the proxy server
+	 */
+	public void setProxy(final HttpHost proxy) {
+		this.proxy = proxy;
+	}
 }

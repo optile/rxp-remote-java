@@ -4,6 +4,7 @@ import java.io.StringReader;
 
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.http.HttpHost;
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +88,18 @@ public class RealexClient {
 	public RealexClient(String secret) {
 		this.secret = secret;
 		this.httpConfiguration = new HttpConfiguration();
+		this.httpClient = HttpUtils.getDefaultClient(httpConfiguration);
+	}
+
+	/**
+	 * Realex client constructor. Will use default HTTP configuration with the input proxy server.
+	 *
+	 * @param secret Shared secret
+	 * @param proxy Proxy server
+	 */
+	public RealexClient(String secret, HttpHost proxy) {
+		this.secret = secret;
+		this.httpConfiguration = new HttpConfiguration(proxy);
 		this.httpClient = HttpUtils.getDefaultClient(httpConfiguration);
 	}
 

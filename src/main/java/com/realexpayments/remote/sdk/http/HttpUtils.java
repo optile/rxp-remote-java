@@ -44,9 +44,11 @@ public class HttpUtils {
      * @return CloseableHttpClient
      */
     public static CloseableHttpClient getDefaultClient(HttpConfiguration httpConfiguration) {
-
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(httpConfiguration.getTimeout())
-                .setSocketTimeout(httpConfiguration.getTimeout()).build();
+        RequestConfig requestConfig = RequestConfig.custom()
+            .setConnectTimeout(httpConfiguration.getTimeout())
+            .setSocketTimeout(httpConfiguration.getTimeout())
+            .setProxy(httpConfiguration.getProxy())
+            .build();
 
         HttpClientConnectionManager connectionManager = new BasicHttpClientConnectionManager();
         ConnectionReuseStrategy connectionResuseStrategy = new NoConnectionReuseStrategy();
