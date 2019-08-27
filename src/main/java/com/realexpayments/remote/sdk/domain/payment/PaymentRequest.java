@@ -671,7 +671,10 @@ public class PaymentRequest implements Request<PaymentRequest, PaymentResponse> 
     @XmlElement(name = "recurring")
     private Recurring recurring;
 
-    /**
+	@XmlElement(name = "storedcredential")
+	private StoredCredential storedCredential;
+
+	/**
      * TSS Info contains optional variables which can be used to identify customers in the
      * Realex Payments system.
      */
@@ -1213,7 +1216,15 @@ public class PaymentRequest implements Request<PaymentRequest, PaymentResponse> 
         this.reasonCode = reasonCode;
     }
 
-    /**
+	public StoredCredential getStoredCredential() {
+		return storedCredential;
+	}
+
+	public void setStoredCredential(final StoredCredential storedCredential) {
+		this.storedCredential = storedCredential;
+	}
+
+	/**
      * Helper method for adding a merchant ID.
      *
      * @param merchantId
@@ -1535,6 +1546,11 @@ public class PaymentRequest implements Request<PaymentRequest, PaymentResponse> 
         this.reasonCode = reasonCode.getType();
         return this;
     }
+
+	public PaymentRequest addStoredCredential(StoredCredential storedCredential) {
+		this.storedCredential = storedCredential;
+		return this;
+	}
     /**
      * <p>
      * This helper method adds Address Verification Service (AVS) fields to the request.

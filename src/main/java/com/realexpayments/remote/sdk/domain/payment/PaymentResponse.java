@@ -174,6 +174,9 @@ public class PaymentResponse implements Response<PaymentResponse> {
 	@XmlElement(name = "fraudresponse")
 	private FraudFilter fraudFilter;
 
+	@XmlElement(name = "srd")
+	private String srd;
+
 	/**
 	 * PaymentResponse constructor.
 	 */
@@ -545,6 +548,13 @@ public class PaymentResponse implements Response<PaymentResponse> {
 		this.fraudFilter = fraudFilter;
 	}
 
+	public String getSrd() {
+		return srd;
+	}
+
+	public void setSrd(final String srd) {
+		this.srd = srd;
+	}
 
 	/**
 	 * {@inheritDoc}
